@@ -113,6 +113,63 @@ comments, questions, or corrections.</p>
         <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
 
 
+
+		<h3 class="u-text u-text-3" style="margin-top: 0;">Adaptive Grid Refinement for Optimal Feedback Control</h3>
+
+		<p class="u-align-justify u-text u-text-4">
+		  The motivation for this project arose from the computational cost of solving
+		  the Hamilton-Jacobi-Bellman (HJB) equation using grid-based methods. The value
+		  function may have large variations or regions of non-differentiability, where
+		  a finer distribution of nodes is needed to capture the solution. Increasing
+		  the node density throughout the domain, however, also increases the
+		  computational burden, particularly as the state dimension grows. The idea
+		  behind this work is to adapt the node distribution according to the local
+		  properties of the computed solution while reducing the overall node
+		  population.<br><br>
+		
+		  To do so, we formulated adaptive grid refinement as a reinforcement learning
+		  problem. Starting from a grid generated using quasi-Monte Carlo sampling, the
+		  agent observes the local node density, the HJB residual, and a normalized
+		  measure of proximity to the domain boundary. It then selects a neighborhood
+		  and the proportion of nodes to add or remove within it. The reward balances
+		  reductions in node count with reductions in a sampled global HJB residual
+		  norm. The observation and action spaces have fixed dimensions, allowing the
+		  same policy to be applied to problems with different state dimensions.<br><br>
+		
+		  In [1], the agent was trained on a two-dimensional minimum-time control
+		  problem and subsequently applied without retraining to three-dimensional
+		  spacecraft detumbling and six-dimensional spacecraft attitude control.
+		  These numerical experiments demonstrated reductions in node population
+		  with lower or comparable HJB residuals. We also integrated the refinement
+		  policy into a semi-Lagrangian fixed-point solver, allowing the grid to be
+		  modified during the solution process. For the two-dimensional example, this
+		  approach converged with fewer nodes and a lower residual than the static-grid
+		  computation.
+		</p>
+		
+		<h6 class="u-align-justify u-text u-text-5"><b>References</b></h6>
+		
+		<p class="u-align-justify u-text u-text-6">
+		  [1] Golpashin, A. E., Clark, M. T., &amp; Conway, B. A. (2025).
+		  Adaptive Grid Refinement for Optimal Feedback Control.
+		  <i>47th Annual AAS Guidance, Navigation, and Control Conference</i>,
+		  AAS Paper 25-056.
+		</p>
+		
+		<h6 class="u-align-justify u-text u-text-7"><b>Related Resources</b></h6>
+		
+		<ul class="u-align-justify u-text u-text-8">
+		  <li>
+		    <a href="https://drive.google.com/file/d/1-uWK0f3dKm1Uf-2ENMb4GjbkM5V5dFl2/view"
+		       class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4"
+		       target="_blank" rel="noopener noreferrer">Paper: "Adaptive Grid Refinement for Optimal Feedback Control"</a>
+		  </li>
+		</ul>
+		
+		<div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+
+
+		  
 		  
         <h3 class="u-text u-text-3" style="margin-top: 0;">Spacecraft Attitude Control under Thrust Uncertainty&nbsp;</h3>
         <p class="u-align-justify u-text u-text-4"> The motivation
@@ -260,7 +317,12 @@ vicinity of the docking port.<br>
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-040b"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1"> © 2023&nbsp;Alen Golpashin</p>
+        <p class="u-small-text u-text u-text-variant u-text-1">
+		  © <span id="copyright-year">2026</span>&nbsp;Alen Golpashin
+		</p>
+		<script>
+		  document.getElementById("copyright-year").textContent = new Date().getFullYear();
+		</script>
       </div></footer>
   </body>
 </html>
