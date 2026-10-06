@@ -69,7 +69,52 @@
 projects I have worked on over the years (as an undergraduate and graduate researcher). Relevant papers, posters, notes, and
 slides are provided for each respective project. Please email me with any
 comments, questions, or corrections.</p>
-        <h3 class="u-text u-text-3">Spacecraft Attitude Control under Thrust Uncertainty&nbsp;</h3>
+
+
+		  
+        <h3 class="u-text u-text-3">Viscosity-Informed Generative Actor-Critic for High-Dimensional Stochastic Optimal Control</h3>
+        <p class="u-align-justify u-text u-text-4">
+          The motivation for this project arose from the computational difficulties in approximating
+          high-dimensional Hamilton-Jacobi-Bellman (HJB) equations associated with stochastic
+          optimal control. The optimal value function need not be twice differentiable, and
+          minimizing a pointwise differential residual does not by itself encode the
+          viscosity-solution conditions. The idea behind this work is to incorporate these
+          conditions directly into reinforcement learning for approximating the value function
+          and the corresponding feedback control.<br><br>
+          To do so, we developed the Viscosity-Informed Generative Actor-Critic (V-GAC) method.
+          The actor approximates the feedback control, while the critic approximates the value
+          function. The critic combines temporal-difference learning with penalties for sampled
+          viscosity subsolution and supersolution inequalities. These inequalities are evaluated
+          using test functions generated through Moreau envelopes. A third, generative proximal
+          network learns approximate contact mappings, avoiding the need to repeatedly solve an
+          inner optimization problem during training.<br><br>
+          In [1], under the stated structural and asymptotic assumptions, uniform limit points of
+          the value-function approximations satisfy the viscosity inequalities on the sampled
+          test family. Numerical experiments show reduced sampled viscosity violations and
+          improved control performance under the tested perturbations of the dynamics. The
+          practical goal of this project is to develop computational methods for high-dimensional
+          feedback control that account for the viscosity formulation of the underlying HJB
+          equation.
+        </p>
+        <h6 class="u-align-justify u-text u-text-5"><b>References</b></h6>
+        <p class="u-align-justify u-text u-text-6">
+          [1] Golpashin, A. E., Puthumanaillam, G., Ornik, M., &amp; Conway, B. A. (2026).
+          Viscosity-Informed Generative Actor-Critic for High-Dimensional Stochastic Optimal Control.
+          <i>arXiv preprint</i>, arXiv:2605.15668.
+        </p>
+        <h6 class="u-align-justify u-text u-text-7"><b>Related Resources</b></h6>
+        <ul class="u-align-justify u-text u-text-8">
+          <li>
+            <a href="https://arxiv.org/pdf/2605.15668"
+               class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4"
+               target="_blank" rel="noopener noreferrer">Preprint: "Viscosity-Informed Generative Actor-Critic for High-Dimensional Stochastic Optimal Control"</a>
+          </li>
+        </ul>
+        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+
+
+		  
+        <h3 class="u-text u-text-3" style="margin-top: 0;">Spacecraft Attitude Control under Thrust Uncertainty&nbsp;</h3>
         <p class="u-align-justify u-text u-text-4"> The motivation
 for this project arose in experimental studies looking at relationship between
 thrust magnitude and propagation of uncertainty in the produced moment. Other
