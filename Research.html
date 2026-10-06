@@ -80,14 +80,14 @@ comments, questions, or corrections.</p>
           minimizing a pointwise differential residual does not by itself encode the
           viscosity-solution conditions. The idea behind this work is to incorporate these
           conditions directly into reinforcement learning for approximating the value function
-          and the corresponding feedback control.<br><br>
+          and the corresponding feedback control.<br>
           To do so, we developed the Viscosity-Informed Generative Actor-Critic (V-GAC) method.
           The actor approximates the feedback control, while the critic approximates the value
           function. The critic combines temporal-difference learning with penalties for sampled
           viscosity subsolution and supersolution inequalities. These inequalities are evaluated
           using test functions generated through Moreau envelopes. A third, generative proximal
           network learns approximate contact mappings, avoiding the need to repeatedly solve an
-          inner optimization problem during training.<br><br>
+          inner optimization problem during training.<br>
           In [1], under the stated structural and asymptotic assumptions, uniform limit points of
           the value-function approximations satisfy the viscosity inequalities on the sampled
           test family. Numerical experiments show reduced sampled viscosity violations and
@@ -123,7 +123,7 @@ comments, questions, or corrections.</p>
 			  non-differentiability, where a finer distribution of nodes is needed to
 			  capture the solution. Increasing the node density throughout the domain,
 			  however, also increases the computational burden, particularly as the
-			  state dimension grows.<br><br>
+			  state dimension grows.<br>
 			  Several works have previously addressed this difficulty through the choice
 			  of grid and interpolation scheme. Chilan and Conway [2] combined
 			  quasi-Monte Carlo grids with kriging regression to approximate HJB
@@ -131,7 +131,7 @@ comments, questions, or corrections.</p>
 			  characteristics method for optimal feedback control. The idea behind
 			  this project is to adapt the node distribution according to the local
 			  properties of the computed solution while reducing the overall node
-			  population.<br><br>
+			  population.<br>
 			  To do so, we formulated adaptive grid refinement as a reinforcement learning
 			  problem. Starting from a grid generated using quasi-Monte Carlo sampling,
 			  the agent observes the local node density, the HJB residual, and a
@@ -140,7 +140,7 @@ comments, questions, or corrections.</p>
 			  The reward balances reductions in node count with reductions in a sampled
 			  global HJB residual norm. The observation and action spaces have fixed
 			  dimensions, allowing the same policy to be applied to problems with
-			  different state dimensions.<br><br>
+			  different state dimensions.<br>
 			  In [1], the agent was trained on a two-dimensional minimum-time control
 			  problem and subsequently applied without retraining to three-dimensional
 			  spacecraft detumbling and six-dimensional spacecraft attitude control.
@@ -158,13 +158,13 @@ comments, questions, or corrections.</p>
 			  [1] Golpashin, A. E., Clark, M. T., &amp; Conway, B. A. (2025).
 			  Adaptive Grid Refinement for Optimal Feedback Control.
 			  <i>47th Annual AAS Guidance, Navigation, and Control Conference</i>,
-			  AAS Paper 25-056.<br><br>
+			  AAS Paper 25-056.<br>
 			
 			  [2] Chilan, C. M., &amp; Conway, B. A. (2020).
 			  Optimal nonlinear control using Hamilton–Jacobi–Bellman viscosity
 			  solutions on unstructured grids.
 			  <i>Journal of Guidance, Control, and Dynamics</i>,
-			  <i>43</i>(1), 30–38.<br><br>
+			  <i>43</i>(1), 30–38.<br>
 			
 			  [3] Kang, W., &amp; Wilcox, L. C. (2017).
 			  Mitigating the curse of dimensionality: sparse grid characteristics
@@ -204,7 +204,7 @@ mathematicians in the past two decades. Due to the noisy nature of our applicati
 the Hamilton-Jacobi-Bellman’s partial differential equation ​inherited an extra
 diffusive term which needed to be accounted for when formulating the Al’brekht’s method. Shown
 in [1], the rigid body rotational equations of motion were stabilized using the
-discussed method.<br><br>
+discussed method.<br>
 The second phase of the project included the addition of the attitude kinematics which extended
 the state space to 6 dimensions. The kinematics were parametrized using the
 parametrization introduced by <a href="https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.70.5840" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" target="_blank">Tsiotras et al.</a> which allowed the linearization
@@ -241,36 +241,122 @@ the linear quadratic regulator. As a future direction of research, I am&nbsp;int
       <div class="u-clearfix u-sheet u-sheet-1">
 
 
+		  <section class="u-clearfix u-section-2" id="sec-5f8d">
+  <div class="u-clearfix u-sheet u-sheet-1">
+
+    <h3 class="u-text u-text-1">Non-Gaussian Data Assimilation for Volumetric Network Anomaly Detection</h3>
+
+    <p class="u-align-justify u-text u-text-2">
+      This project is an ongoing effort focused on non-Gaussian filtering
+      and reinforcement learning for detecting volumetric network anomalies,
+      such as distributed denial-of-service (DDoS) attacks. The motivation
+      for this work comes from the burstiness, heavy-tailed fluctuations,
+      and long-range dependence observed in network traffic [1][2].
+      The idea behind the project is to account for these properties when
+      estimating traffic dynamics and distinguishing anomalous volume changes
+      from ordinary traffic fluctuations.<br>
+
+      The first phase of the project [5] focused on representing the traffic
+      through an adaptive autoregressive model. The coefficients of this
+      model describe how the current packet count depends on recent
+      observations, and changes in the estimated coefficients provide
+      features for detecting a volumetric anomaly. The Kalman–Lévy filter
+      [4] provided a starting point for exploring a filtering model that
+      combines Gaussian noise in the coefficient-update equation with an
+      &alpha;-stable residual in the observation equation. For controlled
+      numerical experiments, traffic is generated using an intermittency
+      map [3], with changes in the generator parameters used to introduce
+      synthetic volume shifts.<br>
+
+      A subsequent phase of the project [6] incorporated reinforcement
+      learning into the detection process. Gaussian and heavy-tailed
+      filtering updates are compared using a posterior error-scale
+      criterion. A Q-learning agent then uses recent filter-selection
+      statistics and an estimate of the traffic location to adjust the
+      alarm threshold and the model-noise scale. The reward is designed
+      to encourage timely detection while penalizing false alarms and
+      missed detections. Preliminary comparisons on simulated traffic
+      showed fewer false alarms and missed detections with the learned
+      threshold than with the tested static threshold.<br>
+
+      The ongoing goal of this research is to develop an adaptive detection
+      framework that accounts for impulsive traffic fluctuations while
+      limiting detection delay and false alarms. Further investigation
+      includes the sensitivity of the filtering and detection methods to
+      the traffic model, noise parameters, and learning settings.
+    </p>
+
+    <img class="u-image u-image-default u-image-1"
+         src="images/Undergradprojectfigure3.JPG"
+         alt="Estimated autoregressive coefficients showing a change near the onset of a simulated volumetric anomaly."
+         data-image-width="1138"
+         data-image-height="613"
+         style="display: block; width: 570px; max-width: 100%; height: auto; margin: 21px auto 0;">
+
+    <h6 class="u-align-justify u-text u-text-3"><b>References</b></h6>
+
+    <p class="u-align-justify u-text u-text-4">
+      [1] Willinger, W., Paxson, V., &amp; Taqqu, M. S. (1998).
+      Self-similarity and heavy tails: Structural modeling of network traffic.
+      In R. J. Adler, R. E. Feldman, &amp; M. S. Taqqu (Eds.),
+      <i>A Practical Guide to Heavy Tails: Statistical Techniques and
+      Applications</i> (pp. 27–53). Birkhäuser.<br>
+
+      [2] Willinger, W., Govindan, R., Jamin, S., Paxson, V., &amp;
+      Shenker, S. (2002). Scaling phenomena in the Internet: Critically
+      examining criticality.
+      <i>Proceedings of the National Academy of Sciences</i>,
+      <i>99</i>(Suppl. 1), 2573–2580.
+
+      [3] Arrowsmith, D. K., Barenco, M., Mondragon, R. J., &amp;
+      Woolf, M. (2004). The statistics of intermittency maps and dynamical
+      modelling of networks.
+      In <i>Proceedings of the 16th International Symposium on Mathematical
+      Theory of Networks and Systems</i>. Leuven, Belgium.<br><br>
+
+      [4] Sornette, D., &amp; Ide, K. (2001). The Kalman–Lévy filter.
+      <i>Physica D: Nonlinear Phenomena</i>,
+      <i>151</i>(2–4), 142–174.<br>
+
+      [5] Golpashin, A. E. (2021).
+      <i>A Study of Non-Gaussian Data Assimilation for Volumetric Network
+      Anomaly Detection</i>. Unpublished research report.<br>
+
+      [6] Golpashin, A. E.
+      <i>A Novel Volumetric Network Anomaly Detection Method</i>.
+      Research presentation.
+    </p>
+
+    <h6 class="u-align-justify u-text u-text-5 u-text-3">
+      <b>Related Resources</b>
+    </h6>
+
+    <ul class="u-align-justify u-text u-text-6 u-text-3">
+      <li>
+        <a href="https://drive.google.com/file/d/1lKqUOtnpkPBddwFsfUt6inlMYYK23a-n/view"
+           class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1"
+           target="_blank" rel="noopener noreferrer">Report: "A Study of Non-Gaussian Data Assimilation for Volumetric Network Anomaly Detection"</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/1Vqlkr6XDt1oUmDQ88IjieJJUs1voa9ZS/view"
+           class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1"
+           target="_blank" rel="noopener noreferrer">Presentation: "A Novel Volumetric Network Anomaly Detection Method"</a>
+      </li>
+      <li>
+        <a href="files/presentation_AlenGolpashin.pdf"
+           class="u-active-none u-border-none u-btn u-button-link u-button-style u-file-link u-hover-none u-none u-text-palette-1-base u-btn-1"
+           target="_blank" rel="noopener noreferrer">Summer 2021 presentation</a>
+      </li>
+    </ul>
+
+    <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+
+  </div>
+</section>
 		  
-        <h3 class="u-text u-text-1"> Non-Gaussian Data Assimilation for Volumetric Network Anomaly Detection</h3>
-        <p class="u-align-justify u-text u-text-2"> This project is an ongoing effort which I am currently
-working on. As it has been shown and proven in the literature, network dynamics
-are best modeled by heavy tailed stochastic processes (as opposed to Gaussian
-ones [1][2]). The idea behind this project is to explore the methods of non-Gaussian
-filtering to improve detection in volumetric (i.e. DDoS) cyber anomalies. For
-simulation purposes, network process is artificially generated using a chaotic
-map&nbsp;model [3] which exhibits the realistic network properties such as LRD,
-self-similarity, and impulsiveness. The filter assumes an autoregressive form
-measuring the dependence of history data points to the current value of the time
-series. To the best of my knowledge, very few works have been focused on
-studying methods of impulsive Kalman fileting with non-symmetric (skewed) α-stable error distributions. Moreover, the α parameter has been kept the same in the prior and posterior terms. For a good example, see reference [4].&nbsp;&nbsp;<br>
-        </p>
-        <img class="u-image u-image-default u-image-1" src="images/Undergradprojectfigure3.JPG" alt="" data-image-width="1138" data-image-height="613">
-        <h6 class="u-align-justify u-text u-text-3"><b>References</b>
-        </h6>
-        <p class="u-align-justify u-text u-text-4">[1] Willinger, W., Paxson, V., &amp; Taqqu, M. S. (1998). Self-similarity and heavy tails: Structural modeling of network Tra c.&nbsp;<i>R. Adler, R. Feldman, and MS Taqqu, editors, A Practical Guide to Heavy Tails: Statistical Techniques for Analyzing Heavy Tailed Distributions, Birkhauser Verlag, Boston</i>.<br>[2] Willinger, W., Govindan, R., Jamin, S., Paxson, V., &amp; Shenker, S. (2002). Scaling phenomena in the Internet: Critically examining criticality.&nbsp;<i>Proceedings of the National Academy of Sciences</i>,&nbsp;<i>99</i>(suppl 1), 2573-2580.<br>[3] Arrowsmith, D. K., Barenco, M., Mondragon, R. J., &amp; Woolf, M. (2004, July). The statistics of intermittency maps and dynamical modeling of networks. In&nbsp;<i>6th Int. Symp. on Mathematical Theory of Networks and Systems, Leuven, Belgium</i>.<br>[4] Sornette, D., &amp; Ide, K. (2001). The Kalman Lévy filter.&nbsp;<i>Phys. D</i>,&nbsp;<i>151</i>(2-4), 142174.&nbsp;
-        </p>
-        <h6 class="u-align-justify u-text u-text-5"> Related Resources</h6>
-        <ul class="u-align-justify u-text u-text-6">
-          <li>
-            <a href="files/presentation_AlenGolpashin.pdf" class="u-active-none u-border-none u-btn u-button-link u-button-style u-file-link u-hover-none u-none u-text-palette-1-base u-btn-1">Summer 2021 presentation</a>
-          </li>
-        </ul>
-        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
-      </div>
-    </section>
-    <section class="u-clearfix u-section-4" id="sec-ddf3">
-      <div class="u-clearfix u-sheet u-sheet-1">
+
+
+		  
         <h3 class="u-text u-text-1"> Optimized Rendezvous of a Quadrotor</h3>
         <p class="u-align-justify u-text u-text-2"> This
 was an undergraduate robotics project I worked on for about two years. At the
