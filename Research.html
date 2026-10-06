@@ -124,7 +124,6 @@ comments, questions, or corrections.</p>
 			  capture the solution. Increasing the node density throughout the domain,
 			  however, also increases the computational burden, particularly as the
 			  state dimension grows.<br><br>
-			
 			  Several works have previously addressed this difficulty through the choice
 			  of grid and interpolation scheme. Chilan and Conway [2] combined
 			  quasi-Monte Carlo grids with kriging regression to approximate HJB
@@ -133,7 +132,6 @@ comments, questions, or corrections.</p>
 			  this project is to adapt the node distribution according to the local
 			  properties of the computed solution while reducing the overall node
 			  population.<br><br>
-			
 			  To do so, we formulated adaptive grid refinement as a reinforcement learning
 			  problem. Starting from a grid generated using quasi-Monte Carlo sampling,
 			  the agent observes the local node density, the HJB residual, and a
@@ -143,7 +141,6 @@ comments, questions, or corrections.</p>
 			  global HJB residual norm. The observation and action spaces have fixed
 			  dimensions, allowing the same policy to be applied to problems with
 			  different state dimensions.<br><br>
-			
 			  In [1], the agent was trained on a two-dimensional minimum-time control
 			  problem and subsequently applied without retraining to three-dimensional
 			  spacecraft detumbling and six-dimensional spacecraft attitude control.
@@ -195,8 +192,8 @@ comments, questions, or corrections.</p>
 for this project arose in experimental studies looking at relationship between
 thrust magnitude and propagation of uncertainty in the produced moment. Other
 motivations included the European Space Agency’s <a href="https://www.researchgate.net/profile/Davide_Nicolini/publication/268185854_Direct_Thrust_and_Thrust_Noise_Measurements_on_the_LISA_Pathfinder_Field_Emission_Thruster/links/54eb49880cf2082851bd7b20/Direct-Thrust-and-Thrust-Noise-Measurements-on-the-LISA-Pathfinder-Field-Emission-Thruster.pdf" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" target="_blank">LISA Pathfinder</a> mission which required
-small tolerances on the produced thrust error due to the objective of the mission.<br>The first
-phase of the project was focused on deriving the stochastic nonlinear optimal
+small tolerances on the produced thrust error due to the objective of the mission.<br><br>
+The first phase of the project was focused on deriving the stochastic nonlinear optimal
 control for the rigid body rotational dynamics. The uncertainty in the
 rotational equations of motion was modeled through stochastic differential
 equations in control multiplicative form where the noise was multi-dimensional Brownian
@@ -207,8 +204,8 @@ mathematicians in the past two decades. Due to the noisy nature of our applicati
 the Hamilton-Jacobi-Bellman’s partial differential equation ​inherited an extra
 diffusive term which needed to be accounted for when formulating the Al’brekht’s method. Shown
 in [1], the rigid body rotational equations of motion were stabilized using the
-discussed method.<br>The second
-phase of the project included the addition of the attitude kinematics which extended
+discussed method.<br><br>
+The second phase of the project included the addition of the attitude kinematics which extended
 the state space to 6 dimensions. The kinematics were parametrized using the
 parametrization introduced by <a href="https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.70.5840" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" target="_blank">Tsiotras et al.</a> which allowed the linearization
 of the dynamics for control derivation. The singularity properties of this
